@@ -17,8 +17,8 @@ from PIL import Image, ExifTags
 from torch.utils.data import Dataset
 from tqdm import tqdm
 
-from utils.general import xyxy2xywh, xywh2xyxy, clean_str
-from utils.torch_utils import torch_distributed_zero_first
+from .general import xyxy2xywh, xywh2xyxy, clean_str
+from .torch_utils import torch_distributed_zero_first
 
 
 # Parameters
@@ -781,7 +781,7 @@ def flatten_recursive(path='../coco128'):
         shutil.copyfile(file, new_path / Path(file).name)
 
 
-def extract_boxes(path='../coco128/'):  # from utils.datasets import *; extract_boxes('../coco128')
+def extract_boxes(path='../coco128/'):  # from .datasets import *; extract_boxes('../coco128')
     # Convert detection dataset into classification dataset, with one directory per class
 
     path = Path(path)  # images dir
@@ -816,7 +816,7 @@ def extract_boxes(path='../coco128/'):  # from utils.datasets import *; extract_
                     assert cv2.imwrite(str(f), im[b[1]:b[3], b[0]:b[2]]), f'box failure in {f}'
 
 
-def autosplit(path='../coco128', weights=(0.9, 0.1, 0.0)):  # from utils.datasets import *; autosplit('../coco128')
+def autosplit(path='../coco128', weights=(0.9, 0.1, 0.0)):  # from .datasets import *; autosplit('../coco128')
     """ Autosplit a dataset into train/val/test splits and save path/autosplit_*.txt files
     # Arguments
         path:       Path to images directory
